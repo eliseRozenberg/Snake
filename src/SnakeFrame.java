@@ -5,26 +5,26 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 
-class Window extends JFrame{
+class SnakeFrame extends JFrame{
 	private static final long serialVersionUID = -2542001418764869760L;
-	public static ArrayList<ArrayList<DataOfSquare>> Grid;
+	public static ArrayList<ArrayList<SnakeColor>> grid;
 	public static int width = 20;
 	public static int height = 20;
-	public Window(){
+	public SnakeFrame(){
 		
 		
 		// Creates the arraylist that'll contain the threads
-		Grid = new ArrayList<ArrayList<DataOfSquare>>();
-		ArrayList<DataOfSquare> data;
+		grid = new ArrayList<ArrayList<SnakeColor>>();
+		ArrayList<SnakeColor> data;
 		
 		// Creates Threads and its data and adds it to the arrayList
 		for(int i=0;i<width;i++){
-			data= new ArrayList<DataOfSquare>();
+			data= new ArrayList<SnakeColor>();
 			for(int j=0;j<height;j++){
-				DataOfSquare c = new DataOfSquare(2);
+				SnakeColor c = new SnakeColor(2);
 				data.add(c);
 			}
-			Grid.add(data);
+			grid.add(data);
 		}
 		
 		// Setting up the layout of the panel
@@ -33,7 +33,7 @@ class Window extends JFrame{
 		// Start & pauses all threads, then adds every square of each thread to the panel
 		for(int i=0;i<width;i++){
 			for(int j=0;j<height;j++){
-				getContentPane().add(Grid.get(i).get(j).square);
+				getContentPane().add(grid.get(i).get(j).square);
 			}
 		}
 		
@@ -45,7 +45,7 @@ class Window extends JFrame{
 		c.start();
 
 		// Links the window to the keyboardlistenner.
-		this.addKeyListener((KeyListener) new KeyboardListener());
+		this.addKeyListener((KeyListener) new ArrowKeyboardListener());
 
 		//To do : handle multiplayers .. The above works, test it and see what happens
 		
